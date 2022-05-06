@@ -8,3 +8,9 @@ use cw_storage_plus::Item;
 pub struct Config {}
 
 pub const CONFIG: Item<Config> = Item::new("config");
+
+pub fn load_config(storage: &dyn Storage) -> StdResult<Config> { CONFIG.load(storage) }
+
+pub fn save_config(storage: &mut dyn Storage, config: &Config) -> StdResult<()> {
+  CONFIG.save(storage, config)
+}
